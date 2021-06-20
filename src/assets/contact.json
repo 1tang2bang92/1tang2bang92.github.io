@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Naver",
+    "type": "Email",
+    "value": "shpark0906@naver.com"
+  },
+  {
+    "name": "Gamil",
+    "type": "Email",
+    "value": "1tang2bang92@gmail.com"
+  },
+  {
+    "name": "Business",
+    "type": "Email",
+    "value": "parksh@matrix2b.com"
+  },
+  {
+    "name": "Discord",
+    "type": "Discord Tag",
+    "value": "원탱이방굴이#1569"
+  },
+  {
+    "name": "Location",
+    "type": "Location",
+    "value": "대한민국 경기도 군포시"
+  },
+  {
+    "name": "stockpolio",
+    "type": "Email",
+    "value": "contact@stockpol.io"
+  }
+]

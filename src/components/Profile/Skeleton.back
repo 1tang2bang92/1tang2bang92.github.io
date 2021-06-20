@@ -1,0 +1,55 @@
+import Typography from '@material-ui/core/Typography';
+import Skeleton from '@material-ui/lab/Skeleton';
+import Paper from '@material-ui/core/Paper';
+
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyle = makeStyles({
+  skeleton: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: "center",
+    padding: '2rem',
+    "& h5": {
+      marginTop: "0rem",
+      backdropFilter: 'invert(20%)',
+    },
+    "& h1": {
+      backdropFilter: 'invert(20%',
+    }
+  },
+  head: {
+    borderRadius: '100%',
+    backdropFilter: 'invert(20%)',
+  },
+  Icons: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-around",
+    width: "100%",
+  },
+  icon: {
+    cursor: "pointer",
+    backdropFilter: "invert(20%)",
+  },
+});
+
+const SkeletonProfile = () => {
+  const classes = useStyle();
+  return (
+    <Paper className={classes.skeleton} elevation={8}>
+      <Paper width={200} height={200} className={classes.head} />
+      <Typography variant="h1"/>
+      <Typography variant="h5"/>
+      <div className={classes.Icons}>
+        {
+          [...Array(4).keys()].map(idx => (
+            <Paper key={idx} width="24" height="24" className={classes.icon}/>
+          ))
+        }
+      </div>
+    </Paper>
+  )
+};
+
+export default SkeletonProfile;

@@ -1,0 +1,27 @@
+import { atom, selector, useRecoilState } from 'recoil';
+import Urls from '../assets/profileUrls.json';
+
+const profileElement = atom({
+    key: "profileElement",
+    default: Urls
+});
+
+// export const getUrlNames = () => Urls.map(elem => elem.name);
+
+// export const getIcon = (key: string) =>
+//     Urls
+//         .find(elem => elem.name == key)
+//         ?.icon;
+
+// export const getIcons = (keys: string[]) =>
+//     Urls
+//         .reduce<any>((acc, elem) =>
+//         (keys.includes(elem.name) ?
+//             [...acc, { key: elem.name, icon: elem.icon }]
+//             : acc)
+//             , []);
+
+export const useUrls = () => 
+    useRecoilState(profileElement);
+
+   
