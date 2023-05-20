@@ -1,77 +1,36 @@
-import { useRecoilValue, useRecoilValueLoadable } from "recoil"
-import { Paper } from "@mui/material"
+import { useRecoilValue } from 'recoil'
+import { Paper } from '@mui/material'
 import styled from '@emotion/styled'
-import { profileSelector } from "../recoil/selector/profile.selector"
-import { useEffect, useState, memo } from "react"
-import { getIcons } from "../service/profile"
+import { profileSelector } from '../recoil/selector/profile.selector'
+import { memo, Suspense } from 'react'
+import { getIcons } from '../service/profile'
 
 const IntroductionComp = () => {
-  const profile = useRecoilValueLoadable(profileSelector)
-  const { contents } = profile
-  const { img, icons, msg } = contents
-  const [renderedContent, setRenderedContent] = useState(null)
-
-  useEffect(() => {
-    const renderContent = (): any => {
-        const links = Object.entries(icons).filter(([site]) => site !== "username")
-        return (
-            <>
-                <img src={img} height={100} />
-                <Nickanme>{icons.username}</Nickanme>
-                <Msg>{ msg }</Msg>
-                <IconsWarpper>
-                    {links.map(([site, url]: any) => (
-                    <Icon key={site} href={url} about={site}>
-                        {getIcons(site)}
-                    </Icon>
-                    ))}
-                </IconsWarpper> 
-            </>
-        )
-    }
-    
-    if (profile.state === "hasValue") {
-      setRenderedContent(renderContent())
-    }
-  }, [profile.state, contents])
-
-  return (
-    <MainFrame elevation={10}> {{
-            hasValue: renderedContent,
-            loading:  <b>Loading...</b>,
-            hasError: <b>Error</b>,
-        }[profile.state]
-    }</MainFrame>
-  )
-}
-
-const IntroductionCompTest = () => {
   const { img, icons, msg } = useRecoilValue(profileSelector)
-    const RenderContent = () => {
-        const links = Object.entries(icons).filter(([site]) => site !== "username")
-        return (
-            <>
-                <img src={img} height={100} />
-                <Nickanme>{icons.username}</Nickanme>
-                <Msg>{ msg }</Msg>
-                <IconsWarpper>
-                    {links.map(([site, url]: any) => (
-                    <Icon key={site} href={url} about={site}>
-                        {getIcons(site)}
-                    </Icon>
-                    ))}
-                </IconsWarpper> 
-            </>
-        )
-    }
+  const RenderContent = () => {
+    const links = Object.entries(icons).filter(([site]) => site !== 'username')
+    return (
+      <>
+        <img src={img} height={100} />
+        <Nickanme>{icons.username}</Nickanme>
+        <Msg>{msg}</Msg>
+        <IconsWarpper>
+          {links.map(([site, url]) => (
+            <Icon key={site} href={url} about={site}>
+              {getIcons(site)}
+            </Icon>
+          ))}
+        </IconsWarpper>
+      </>
+    )
+  }
 
   return (
-    <MainFrame elevation={10}> {{
-            hasValue: renderedContent,
-            loading:  <b>Loading...</b>,
-            hasError: <b>Error</b>,
-        }[profile.state]
-    }</MainFrame>
+    <MainFrame elevation={10}>
+      <Suspense fallback={<b>Loading...</b>}>
+        <RenderContent />
+      </Suspense>
+    </MainFrame>
   )
 }
 
@@ -89,6 +48,7 @@ const IconsWarpper = styled.div`
   flex-direction: row;
   width: 100%;
   justify-content: space-evenly;
+  align-items: center;
 `
 const Icon = styled.a`
   text-decoration: none;
