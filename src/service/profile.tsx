@@ -2,7 +2,7 @@ import LanguageIcon from '@mui/icons-material/Language'
 import Blog from '../assets/naver_blog_icon.png'
 import YouTubeIcon from '@mui/icons-material/YouTube'
 import GitHubIcon from '@mui/icons-material/GitHub'
-
+import styled from '@emotion/styled'
 
 export const getProfile = () => {
   return {
@@ -14,7 +14,7 @@ export const getProfile = () => {
 }
 
 export const getProfileMsg = () => {
-    return "Hello world!"
+  return 'Hello world!'
 }
 
 export const getIcons = (site: string) => {
@@ -23,9 +23,13 @@ export const getIcons = (site: string) => {
       return <GitHubIcon />
     case 'youtube':
       return <YouTubeIcon />
-    case 'blog':
-      return <img src={Blog} />
+    case 'naverBlog':
+      return <BlogImage src={Blog} />
     default:
       return <LanguageIcon />
   }
 }
+
+const BlogImage = styled.img`
+  height: 16px;
+`
