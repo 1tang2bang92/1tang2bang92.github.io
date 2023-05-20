@@ -8,8 +8,8 @@ export const profileSelector = selector({
     get: async ({ get }) => {
       get(profileAtom);
       return {
-        img: await img,
-        icons: await getProfile(),
+        img:  img,
+        icons: getProfile(),
         msg: getProfileMsg()
       };
     },
