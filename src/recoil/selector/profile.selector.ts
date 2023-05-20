@@ -1,6 +1,6 @@
 import { selector } from 'recoil'
 import img from '../../assets/profile.png'
-import { getProfile } from '../../service/profile'
+import { getProfile, getProfileMsg } from '../../service/profile'
 import { profileAtom } from '../atom/profile.atom'
 
 export const profileSelector = selector({
@@ -9,7 +9,8 @@ export const profileSelector = selector({
       get(profileAtom);
       return {
         img: await img,
-        txt: await getProfile(),
+        icons: await getProfile(),
+        msg: getProfileMsg()
       };
     },
   });
