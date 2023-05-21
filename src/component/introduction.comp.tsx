@@ -6,8 +6,8 @@ import { memo, Suspense } from 'react'
 import { getIcons } from '../service/profile'
 
 const IntroductionComp = () => {
-  const { img, icons, msg } = useRecoilValue(profileSelector)
   const RenderContent = () => {
+    const { img, icons, msg } = useRecoilValue(profileSelector)
     const links = Object.entries(icons).filter(([site]) => site !== 'username')
     return (
       <>
